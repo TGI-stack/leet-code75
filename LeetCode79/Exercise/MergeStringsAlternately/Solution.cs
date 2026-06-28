@@ -1,11 +1,76 @@
 ﻿namespace Exercise.MergeStringsAlternately;
 
+
 public class Solution
 {
     public string MergeAlternately(string word1, string word2)
     {
+        var result = ConcatinaringStrings(word1, word2);
 
+        for (int i = word1.Length; i < word2.Length; i++)
+        {
+            result = result + word2[i];
+        }
+
+        for (int i = word2.Length; i < word1.Length; i++)
+        {
+            result = result + word1[i];
+        }
+
+        return result;
     }
+
+    public string ConcatinaringStringsNew(string word1, string word2)
+    {
+        var result = string.Empty;
+
+        if (word1.Length == word2.Length)
+        {
+            for (int i = 0; i < word2.Length; i++)
+            {
+                result = result + word1[i] + word2[i];
+            }
+
+            return result;
+        }
+
+        var minLength = word1.Length < word2.Length ? word1.Length : word2.Length;
+        var maxLength = word1.Length > word2.Length ? word1.Length : word2.Length;
+        var maxLengthWord = word1.Length > word2.Length ? word1 : word2;
+
+        for (int i = 0; i < minLength; i++)
+        {
+            result = result + word1[i] + word2[i];
+        }
+
+        for (int i = minLength; i < maxLength; i++)
+        {
+            result += maxLengthWord[i];
+        }
+
+        return result;
+    }
+    public string ConcatinaringStrings(string word1, string word2)
+    {
+        var result = string.Empty;
+        if (word1.Length <= word2.Length)
+        {
+            for (int i = 0; i < word1.Length; i++)
+            {
+                result = result + word1[i] + word2[i];
+            }
+        }
+        else
+        {
+            for (int i = 0; i < word2.Length; i++)
+            {
+                result = result + word1[i] + word2[i];
+            }
+        }
+            
+        return result;
+    }
+   
 }
 
 //You are given two strings word1 and word2.Merge the strings by adding letters in alternating order, starting with word1.

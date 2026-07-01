@@ -1,7 +1,36 @@
-﻿namespace Exercise.GreatestCommonDivisorofStrings;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
+
+namespace Exercise.GreatestCommonDivisorofStrings;
 
 internal class Solution
 {
+
+    public string GcdOfStrings(string str1, string str2)
+    {
+       if(str1 + str2 != str2 + str1)
+        {
+            return "";
+        }
+
+       int divisorLength = GetDivisor(str1.Length, str2.Length);
+
+        return str1.Substring(0, divisorLength);
+    }
+
+    
+    public int GetDivisor(int number1, int number2)
+    {
+        while (number2 != 0)
+        {
+            var initial = number2;
+            number2 = number1 % number2;
+            number1 = initial;
+        }
+        return number1;
+    }
+
 }
 
 
@@ -19,13 +48,13 @@ internal class Solution
 
 //Example 2:
 
-//Input: str1 = "ABABAB", str2 = "ABAB"
+//Input: str1 = "ABABAB", str2 = "ABAB"  ABABABABAB  ABABABABAB
 
 //Output: "AB"
 
 //Example 3:
 
-//Input: str1 = "LEET", str2 = "CODE"
+//Input: str1 = "LEET", str2 = "CODE"  LEETCODE != CODELEET
 
 //Output: ""
 
